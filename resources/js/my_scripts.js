@@ -77,7 +77,30 @@ function changeColor(color)
 						
 						4. Update the second table to show the total number of wins/losses for the Buffs.
 */
+function loadStatsPage()
+{
+    var table = document.getElementById("stats_table");
+    var wins = 0;
+    var lose = 0;
+	//row 2 cause first is game date
+    for(i = 2; i < table.rows.length; i++)
+    {
+		console.log(table.rows[i].cells[2].innerHTML) //this was told to me by a classmate as to use this
+		console.log(table.rows[i].cells[2].value) //this what i was trying to use
 
+		//checks to see if home or opponent  won
+        if(parseInt(table.rows[i].cells[2].innerHTML) > parseInt(table.rows[i].cells[3].innerHTML)){
+                table.rows[i].cells[4].innerHTML = "Buffs"; // adds buff wins to column
+                wins++; //keeps tracks of wins
+        }
+        else{ // same but for losses
+            table.rows[i].cells[4].innerHTML = table.rows[i].cells[1].innerHTML;
+            lose++; //keeps track of losses
+        }
+    }
+    document.getElementById("wins").innerHTML = wins;
+    document.getElementById("losses").innerHTML = lose;
+}
 /*
 	Football Player Information Page
 		loadPlayersPage method:
@@ -121,4 +144,3 @@ function changeColor(color)
 					  avg_rec_yards - the average number of receiving yards for the player's Buff career
 */
 				
-
